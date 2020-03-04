@@ -1,29 +1,37 @@
 <template>
   <div class="hello">
-   <div>{{ num | formatNum }}</div>
+    <div>{{ num | formatNum }}</div>
     <div>{{ data }}</div>
-    <div><a :href="globalUrl" target="_blank">{{ globalUrl }}</a></div>
+    <div>
+      <a
+        :href="globalUrl"
+        target="_blank"
+      >{{ globalUrl }}</a>
+    </div>
   </div>
 </template>
-
 <script>
-  import Data from './data.json';
-  export default {
-    data() {
-      return {
-        data: Data,
-        num: 123456.123456
-      }
-    },
-    computed: {
-      globalUrl() {
-        return this.$store.state.globalUrl
-      }
-    },
-    mounted() {
-      console.log(this.$axios.get('/api/user'))
+import Data from './data.json';
+export default {
+  data () {
+    return {
+      data: Data,
+      num: 123456.123456
     }
+  },
+  computed: {
+    globalUrl () {
+      return this.$store.state.globalUrl
+    }
+  },
+  mounted () {
+    const a = 'aa'
+    if (a === 'bb') {
+      alert(1)
+    }
+    console.log(this.$axios.get('/api/user'))
   }
+}
 </script>
 
 <style lang="scss">

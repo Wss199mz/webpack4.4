@@ -3,7 +3,7 @@ import _ from 'lodash';
 // import banner from './static/img/banner.jpg';
 import printMe from './print.js';
 import Data from './static/data';
-function component() {
+function component () {
   var element = document.createElement('div');
   // Lodash, now imported by this script
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');

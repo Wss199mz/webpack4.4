@@ -8,12 +8,12 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'development',
   entry: {
-    app: './src/main.js',
+    app: './src/main.js'
   },
   output: {
-    filename: isProd? '[name].[hash:8].js' : '[name].js',
+    filename: isProd ? '[name].[hash:8].js' : '[name].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: isProd?'./' : '/'
+    publicPath: isProd ? './' : '/'
   },
   devtool: isProd ? false : 'inline-source-map',
   plugins: [
@@ -42,9 +42,9 @@ module.exports = {
     },
     extensions: ['.js', '.vue', '.scss'], // import引入文件的时候不用加后缀
     modules: [ // 配置路径别名
-      'node_modules'
-      ,path.resolve(__dirname, '../src/*')
-      ,path.resolve(__dirname, '../src/assets')
+      'node_modules',
+      path.resolve(__dirname, '../src/*'),
+      path.resolve(__dirname, '../src/assets')
     ]
   },
   module: {
@@ -68,8 +68,8 @@ module.exports = {
         }
       },
       {
-        test:/\.vue$/,
-        use:['vue-loader'] // 依赖于 vue-template-compiler,需要额外安装
+        test: /\.vue$/,
+        use: ['vue-loader'] // 依赖于 vue-template-compiler,需要额外安装
       },
       {
         test: /\.css$/,

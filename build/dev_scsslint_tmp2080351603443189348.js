@@ -5,6 +5,7 @@ module.exports = {
   quiet: true,
   host: 'localhost',
   port: 8001, // 端口
+  stats: 'errors-only',
   open: true, // 自动打开页面
   proxyTable: {
     '/api': {

@@ -4,11 +4,13 @@ const common = require('./webpack.common.js');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === 'production';
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const chalk = require('chalk');
 module.exports = merge(common, {
   mode: 'production',
   // vendor: ["jquery", "other-lib"],
   optimization: {
-    minimize: isProd ? true : false, // 开发环境不压缩
+    minimize: !!isProd, // 开发环境不压缩
     minimizer: [
       new TerserPlugin({
         terserOptions: {
@@ -20,8 +22,8 @@ module.exports = merge(common, {
             drop_debugger: false,
             pure_funcs: ['console.log'] // 移除console
           }
-        },
-      }),
+        }
+      })
     ],
     splitChunks: {
       cacheGroups: {
@@ -49,6 +51,13 @@ module.exports = merge(common, {
   plugins: [
     new UglifyJSPlugin({
       sourceMap: true
+    }),
+    new ProgressBarPlugin({
+      format:
+        '  build [:bar] ' +
+        chalk.green.bold(':percent') +
+        ' (:elapsed seconds)',
+      clear: true
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')

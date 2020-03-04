@@ -1,4 +1,4 @@
 import { _get } from './axios';
-export function getData() {
+export function getData () {
   console.log(_get);
 }

@@ -3,7 +3,7 @@ export var dateFormat = function dateFormat (value, divider) {
   divider = divider || '/';
   var d = new Date(value);
   var year = d.getFullYear();
-  var month = d.getMonth() + 1 ;
+  var month = d.getMonth() + 1  ;
   var date = d.getDate();
 
   if (month >= 1 && month <= 9) {

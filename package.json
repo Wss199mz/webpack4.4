@@ -8,12 +8,16 @@
     "start": "webpack-dev-server --config build/dev-server.js --inline --progress --open --mode development",
     "build": "cross-env NODE_ENV=production webpack --config build/build.js --mode production",
     "server": "node build/server.js --inline --hot",
-    "eslint.sh": "bash node_modules/pre-commit-hooks/shell/eslint.sh",
-    "eslint": "npm run eslint.sh"
+    "precommit": "lint-staged"
   },
-  "pre-commit": [
-    "eslint"
-  ],
+  "lint-staged": {
+    "linters": {
+      "src/**/*.js": [
+        "./node_modules/.bin/eslint --fix",
+        "git add"
+      ]
+    }
+  },
   "author": "wangshanshan",
   "license": "ISC",
   "devDependencies": {

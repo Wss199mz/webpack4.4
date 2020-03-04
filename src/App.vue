@@ -21,7 +21,7 @@ export default {
   },
   data () {
     return {
-      info: 'webpack4.0',
+      info: 'webpack4.0' ,
       radio: true
     }
   },

@@ -22,9 +22,10 @@ function createHappyPlugin (id, loaders) {
   })
 }
 module.exports = {
-  entry: {
-    app: './src/main.js'
-  },
+  // entry: { // 使用devServer开启服务
+  //   app: './src/main.js'
+  // },
+  entry: ['webpack-hot-middleware/client?noInfo=true&reload=true', './src/main.js'], // 使用express开启服务
   externals: {
     "vue": "Vue",
     "vue-router": "VueRouter",
@@ -70,7 +71,7 @@ module.exports = {
       chunkFilename: isProd ? '[id].[hash].css' : '[id].css'
     }),
     createHappyPlugin('happy-babel-js', ['babel-loader?cacheDirectory=true']),
-    // createHappyPlugin('happy-babel-vue', ['babel-loader?cacheDirectory=true']),
+    createHappyPlugin('happy-babel-vue', ['babel-loader?cacheDirectory=true']),
     createHappyPlugin('happy-css', ['css-loader', 'vue-style-loader']),
     new HappyPack({
       loaders: [{
@@ -90,7 +91,7 @@ module.exports = {
   ],
   resolve: {
     alias: {
-      '@': path.join(srcPath, '..', '')
+      '@': path.join(srcPath, '')
     },
     extensions: ['.js', '.vue', '.scss'], // import引入文件的时候不用加后缀
     modules: [ // 配置路径别名
@@ -145,6 +146,10 @@ module.exports = {
           },
           'css-loader'
         ]
+      },
+      {
+        test:/\.scss$/,
+        use:['style-loader','css-loader','sass-loader']
       },
       {
         test: /\.(png|jpg|gif|svg)$/,

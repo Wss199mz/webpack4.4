@@ -25,10 +25,6 @@ export default {
     }
   },
   mounted () {
-    const a = 'aa'
-    if (a === 'bb') {
-      alert(1)
-    }
     console.log(this.$axios.get('/api/user'))
   }
 }

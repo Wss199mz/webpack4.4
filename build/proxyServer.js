@@ -1,6 +1,6 @@
-let express = require('express');
-let app =express();
-//设置跨域访问
+const express = require('express');
+const app = express();
+// 设置跨域访问
 app.all('*', function (req, res, next) {
   res.header('Access-Control-Allow-Origin', 'http://test.test.com:8080');
   res.header('Access-Control-Allow-Credentials', true);
@@ -9,16 +9,16 @@ app.all('*', function (req, res, next) {
   res.header('Content-Type', 'application/json;charset=utf-8');
   next()
 });
-let data = {
+const data = {
   name: 'wade',
-  age: 18,
+  age: 18
 };
-let api = '/api/user';
+const api = '/api/user';
 
 app.get(api, (req, res) => {
   res.send(data);
 });
-//配置服务端口
+// 配置服务端口
 var server = app.listen(8000, () => {
-  console.log( `localhost:8000${api}`);
+  console.log(`localhost:8000${api}`);
 });

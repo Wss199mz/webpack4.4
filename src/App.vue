@@ -7,7 +7,7 @@
       v-model="radio"
       label="1"
     >
-      {{ info }}80
+      {{ info }}
     </el-radio>
     <Page />
   </div>
@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .asd {
   color: blue;
 }

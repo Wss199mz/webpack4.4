@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config build/dev-server.js --inline --progress --open --mode development",
-    "build": "cross-env NODE_ENV=production webpack --config build/build.js --mode production",
     "server": "node build/server.js --inline --hot",
+    "build": "cross-env NODE_ENV=production webpack --config build/build.js --mode production",
     "precommit": "lint-staged"
   },
   "lint-staged": {

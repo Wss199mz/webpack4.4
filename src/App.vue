@@ -10,14 +10,21 @@
       {{ info }}
     </el-radio>
     <Page />
+    <Images src="ss.png" />
+    <img
+      :src="ss"
+      alt=""
+    >
   </div>
 </template>
 <script>
 import Page from "@/page/index.vue";
+import Images from "./components/Image";
 export default {
   name: "App",
   components: {
-    Page
+    Page,
+    Images
   },
   data () {
     return {

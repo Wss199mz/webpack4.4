@@ -4,7 +4,7 @@ import Vuex from 'vuex'; // import ajax from 'utils/axios'
 var store = new Vuex.Store({
   modules: {},
   state: {
-    globalUrl: ''
+    globalUrl: 'https://izto.com'
   },
   actions: {},
   mutations: {}

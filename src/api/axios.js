@@ -38,7 +38,7 @@ var GetToken = function GetToken () {
   return theRequest;
 };
 
-var BackToLogin = function BackToLogin (response) {
+var BackToLogin = function BackToLogin () {
   if (process.env.NODE_ENV === 'development') {
     return;
   }

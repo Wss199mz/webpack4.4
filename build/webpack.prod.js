@@ -6,9 +6,13 @@ const webpack = require('webpack');
 const isProd = process.env.NODE_ENV === 'production';
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const chalk = require('chalk');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = merge(common, {
   mode: 'production',
   // vendor: ["jquery", "other-lib"],
+  entry: [
+    './src/main.js'
+  ],
   optimization: {
     minimize: !!isProd, // 开发环境不压缩
     minimizer: [
@@ -49,6 +53,7 @@ module.exports = merge(common, {
     }
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new UglifyJSPlugin({
       sourceMap: true
     }),

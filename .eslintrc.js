@@ -8,14 +8,12 @@ module.exports = {
     node: true,
   },
   extends: [
-    'standard', //使用standard做代码规范
+    'eslint:recommended',
     'plugin:vue/recommended'
   ],
   // required to lint *.vue files
   plugins: [
-    'import',
-    'vue',
-    'html'
+    'import', 'vue'
   ],
   // add your custom rules here
   rules: {
@@ -32,6 +30,9 @@ module.exports = {
     "no-console": 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
     "eol-last": 0,
+    'linebreak-style': [0, 'windows'], //换行风格
+    'no-multi-spaces': 1, //禁止用多余的空格
+    'no-multi-str': 1, //字符串不能用\换行
     // "spaced-comment": 0,//注释风格要不要有空格
     // "eqeqeq": [0, "always"],
     "space-before-function-paren": 0,

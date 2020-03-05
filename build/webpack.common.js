@@ -22,10 +22,6 @@ module.exports = {
   // entry: { // 使用devServer开启服务
   //   app: './src/main.js'
   // },
-  entry: [
-    'webpack-hot-middleware/client?noInfo=true&reload=true',
-    './src/main.js'
-  ], // 使用express开启服务
   externals: {
     vue: 'Vue',
     'vue-router': 'VueRouter',
@@ -46,6 +42,7 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '..', 'src/index.html'), // 引入模版
@@ -65,7 +62,7 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: isProd ? '[name].[hash].css' : '[name].css',
-      chunkFilename: isProd ? '[id].[hash].css' : '[id].css'
+      chunkFilename: isProd ? 'static/css/[id].[hash].css' : 'static/css/[id].css'
     }),
     createHappyPlugin('happy-babel-js', ['babel-loader?cacheDirectory=true']),
     createHappyPlugin('happy-babel-vue', ['babel-loader?cacheDirectory=true']),
@@ -97,23 +94,15 @@ module.exports = {
     ]
   },
   output: {
-    filename: isProd ? '[name].[hash].js' : '[name].js',
+    filename: isProd ? 'static/js/[name].[hash].js' : 'static/js/[name].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: isProd ? './' : '/'
+    publicPath: '/'
   },
   module: {
     rules: [
       {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader',
-            options: {
-              // 配置html中图片编译
-              minimize: true
-            }
-          }
-        ]
+        test: /\.(png|jpg|gif|bmp|jpeg|svg)$/,
+        use: 'url-loader'
       },
       {
         test: /\.(vue|js)$/,
@@ -125,7 +114,6 @@ module.exports = {
         test: /\.js$/,
         include: [resolve('src')],
         exclude: [/node_modules/, path.resolve(__dirname, '../public/')], // 不检测的文件
-        // loader: 'babel-loader',
         use: [
           {
             loader: 'eslint-loader',
@@ -171,19 +159,16 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
-              limit: 9000
+              publicPath: '../',
+              name: 'static/fonts/[name].[hash].[ext]'
             }
           }
         ]
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: ['file-loader']
       },
       {
         test: /\.(csv|tsv)$/,

@@ -37,5 +37,6 @@ export default {
     text-decoration: none;
     color: gray;
   }
+  /*background-image: url('../assets/images/ss.png');*/
 }
 </style>
